@@ -1,4 +1,4 @@
-# KomPortfolioShell
+# SagarPortfolioShell
 
 SagarPortfolioShell is a simple terminal-like portfolio page, designed to showcase my projects and offer interactive commands for visitors to explore.
 
