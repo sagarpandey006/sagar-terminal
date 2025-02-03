@@ -24,8 +24,13 @@ const aboutCommands = {
   theme: "Change terminal theme. 🎨",    // Nothing to Change
   clear: "Clear terminal. 🧹 Keep it tidy! 😊",    // Nothing to Change
   // Add Education Section
-  // Add Experience Section
+  // Add work Experience Section
+  // Add About section
+  // Add Certifications Section
+  // Add hackathons Experience Section
+  // Add Skills Section
   // Add Resume Section
+  // Make Contact section like if you have any message for me or want to collaborate with me or want to hire me write ur name and email and message and that will come to me on my mail
 };
 
 const socials = {
