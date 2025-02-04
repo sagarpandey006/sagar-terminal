@@ -12,25 +12,95 @@ const commands = {
   projects: `Here's the project gallery: <a href="https://project-gallery-eight.vercel.app/" class="link" target="_blank">Project Gallery</a> 🌟`,
   contact:
     "Contact me at officialsagar006@gmail.com 📧 Just don't spam me with cat pictures! 🐱",
+  education: `
+    🎓 Education History:
+    
+    • B.Tech in IoT (2020 - 2024)
+      SATI, Vidisha
+      CGPA: X.XX/10.0
+    
+    • Higher Secondary (2019)
+      School Name
+      Percentage: XX%
+    
+    • Secondary Education (2017)
+      School Name
+      Percentage: XX%
+  `,
+  experience: `
+    💼 Work Experience:
+    
+    • Software Developer Intern (Jan 2024 - Present)
+      Company Name
+      - Developed and maintained web applications using React.js
+      - Implemented responsive designs and REST APIs
+    
+    • Web Development Intern (June 2023 - Dec 2023)
+      Company Name
+      - Created responsive websites using HTML, CSS, and JavaScript
+      - Worked on backend development using Node.js
+  `,
+  about: `
+    👨‍💻 About Me:
+    
+    I'm a passionate developer with a strong foundation in web technologies and IoT.
+    I love building things that live on the internet and solving complex problems.
+    My goal is to always build products that provide pixel-perfect, performant experiences.
+    
+    🌱 Currently learning: Advanced React Patterns, System Design
+    🤝 Open for: Full-time opportunities, Collaborations, Freelance Projects
+  `,
+  certifications: `
+    📜 Certifications:
+    
+    • Web Development Bootcamp - Udemy (2023)
+    • Python for Data Science - Coursera (2023)
+    • Advanced JavaScript - freeCodeCamp (2022)
+    • IoT Fundamentals - Cisco (2022)
+  `,
+  hackathons: `
+    🏆 Hackathon Experience:
+    
+    • Smart India Hackathon 2023
+      - Developed an IoT-based solution for smart agriculture
+      - Secured 2nd position among 100+ teams
+    
+    • Code For Good 2023
+      - Built a web application for NGO management
+      - Won Best UI/UX Design award
+  `,
+  skills: `
+    🛠️ Technical Skills:
+    
+    • Languages: JavaScript, Python, Java, C++
+    • Frontend: HTML, CSS, React.js, Next.js
+    • Backend: Node.js, Express.js, MongoDB
+    • Tools: Git, Docker, AWS, Firebase
+    • Other: Data Structures, Algorithms, IoT Protocols
+  `,
+  resume: `
+    📄 My Resume:
+    <a href="YOUR_RESUME_LINK" class="link" target="_blank">Download Resume</a>
+  `
 };
 
 const aboutCommands = {
-  help: "You know what this does. 🙄 Want some hints? 😏",    // Nothing to Change
+  help: "You know what this does. 🙄 Want some hints? 😏",
   whois: "Who is Sagar? 🤔 The brains behind this terminal! 💡",
-  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",    // Nothing to Change
-  social: "Connect with me. 🌐 Let's network! 🤝",    // Nothing to Change
-  projects: "Check out projects. 💻 Prepare to be amazed! ✨",  // Make your own website for projects
-  joke: "Get a programming joke. 😄",    // Nothing to Change
-  theme: "Change terminal theme. 🎨",    // Nothing to Change
-  clear: "Clear terminal. 🧹 Keep it tidy! 😊",    // Nothing to Change
-  // Add Education Section
-  // Add work Experience Section
-  // Add About section
-  // Add Certifications Section
-  // Add hackathons Experience Section
-  // Add skills Section
-  // Add Resume Section
-  // Make Contact section like if you have any message for me or want to collaborate with me or want to hire me write ur name and email and message and that will come to me on my mail
+  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",
+  social: "Connect with me. 🌐 Let's network! 🤝",
+  projects: "Check out projects. 💻 Prepare to be amazed! ✨",
+  joke: "Get a programming joke. 😄",
+  theme: "Change terminal theme. 🎨",
+  education: "View my academic journey. 🎓",
+  experience: "Check out my work experience. 💼",
+  about: "Learn more about me. 👨‍💻",
+  certifications: "View my certifications. 📜",
+  hackathons: "See my hackathon adventures. 🏆",
+  skills: "Explore my technical skills. 🛠️",
+  resume: "Download my resume. 📄",
+  contact: "Let's get in touch! 📧",
+  clear: "Clear terminal. 🧹 Keep it tidy! 😊"
 };
 
 const socials = {
@@ -159,7 +229,30 @@ function displayOutput(output) {
   }
 }
 
+function handleContact(name, email, message) {
+  const mailtoLink = `mailto:officialsagar006@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+  window.location.href = mailtoLink;
+  return "Opening your email client to send the message...";
+}
+
 function processCommand(command) {
+  if (command.startsWith("contact")) {
+    const args = command.split(" ");
+    if (args.length >= 4) {
+      const name = args[1];
+      const email = args[2];
+      const message = args.slice(3).join(" ");
+      return handleContact(name, email, message);
+    } else {
+      return `
+        📧 Contact Form Usage:
+        contact [name] [email] [message]
+        
+        Example:
+        contact John john@example.com Hello, I'd like to collaborate!
+      `;
+    }
+  }
   if (command == "") return "<hr hidden />";
   else if (command === "clear") {
     clearTerminal();
