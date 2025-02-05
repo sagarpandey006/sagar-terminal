@@ -72,15 +72,16 @@ const commands = {
   skills: `
     🛠️ Technical Skills:
     
-    • Languages: JavaScript, Python, Java, C++
-    • Frontend: HTML, CSS, React.js, Next.js
-    • Backend: Node.js, Express.js, MongoDB
-    • Tools: Git, Docker, AWS, Firebase
-    • Other: Data Structures, Algorithms, IoT Protocols
+    • Languages : C, C++, Python, Java, JavaScript
+    • Developer Tools : VS Code,GitHub,Postman, Figma, Canva
+    • Technologies/Frameworks : HTML5, CSS3, React, Express, NodeJS, Bootstrap , Tailwind CSS
+    • Cloud/Databases : SQL, MongoDB
+    • Areas of Interest : Web Development
+
   `,
   resume: `
     📄 My Resume:
-    <a href="YOUR_RESUME_LINK" class="link" target="_blank">Download Resume</a>
+    <a href="Resume.pdf.pdf" class="link" target="_blank">Download Resume</a>
   `
 };
 
