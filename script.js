@@ -69,16 +69,16 @@ const commands = {
       - Built a web application for NGO management
       - Won Best UI/UX Design award
   `,
-  skills: `
-    🛠️ Technical Skills:
-    
-    • Languages : C, C++, Python, Java, JavaScript
-    • Developer Tools : VS Code,GitHub,Postman, Figma, Canva
-    • Technologies/Frameworks : HTML5, CSS3, React, Express, NodeJS, Bootstrap , Tailwind CSS
-    • Cloud/Databases : SQL, MongoDB
-    • Areas of Interest : Web Development
 
-  `,
+  skills: `<div style="padding-left: 4px; line-height: 0.6;">
+    <div>🛠️ Technical Skills:</div>
+    <div style="padding-left: 20px; text-indent: -20px;">• Languages: C/C++, Python, Java, JavaScript</div>
+    <div style="padding-left: 20px; text-indent: -20px;">• Dev Tools: VS Code, GitHub, Postman, Figma, Canva</div>
+    <div style="padding-left: 20px; text-indent: -20px;">• Web Tech: HTML5, CSS3, React, Express, NodeJS, Bootstrap, Tailwind CSS</div>
+    <div style="padding-left: 20px; text-indent: -20px;">• Database: SQL, MongoDB</div>
+    <div style="padding-left: 20px; text-indent: -20px;">• Focus: Web Development, Full Stack Development, UI/UX Design</div>
+  </div>`,
+
   resume: `
     📄 My Resume:
     <a href="Resume.pdf.pdf" class="link" target="_blank">Download Resume</a>
