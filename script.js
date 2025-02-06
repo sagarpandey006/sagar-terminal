@@ -8,24 +8,24 @@ const commands = {
     Education: Bachelor of Technology in IoT @ SATI, Vidisha
     Interests: Web Devlopment 💻, Python 🐍, SQL 📊, Data Science 📈`,
   whoami:
-    "You are a visitor to our terminal. We will soon find out who you are. 🕵️‍♂️ But for now, enjoy the mystery! 🕵️‍♀️",
+    "You are a visitor to my terminal. I will soon find out who you are. 🕵️‍♂️ But for now, enjoy the mystery! 🕵️‍♀️",
   projects: `Here's the project gallery: <a href="https://project-gallery-eight.vercel.app/" class="link" target="_blank">Project Gallery</a> 🌟`,
   contact:
     "Contact me at officialsagar006@gmail.com 📧 Just don't spam me with cat pictures! 🐱",
   education: `
     🎓 Education History:
     
-    • B.Tech in IoT (2020 - 2024)
+    • B.Tech in Internet of Things (2022 - 2026)
       SATI, Vidisha
-      CGPA: X.XX/10.0
+      CGPA: 8.02/10.0
     
-    • Higher Secondary (2019)
-      School Name
-      Percentage: XX%
+    • Higher Secondary (2022)
+      Gurunanak Mission Higher Secondary School, Maihar
+      Percentage: 91.33%
     
-    • Secondary Education (2017)
-      School Name
-      Percentage: XX%
+    • Secondary Education (2020)
+      Gurunanak Mission Higher Secondary School, Maihar
+      Percentage: 95.66%
   `,
   experience: `
     💼 Work Experience:
@@ -70,13 +70,14 @@ const commands = {
       - Won Best UI/UX Design award
   `,
 
-  skills: `<div style="padding-left: 4px; line-height: 0.6;">
+  skills: `<div style="padding-left: 4px; line-height: 0.8;">
     <div>🛠️ Technical Skills:</div>
-    <div style="padding-left: 20px; text-indent: -20px;">• Languages: C/C++, Python, Java, JavaScript</div>
-    <div style="padding-left: 20px; text-indent: -20px;">• Dev Tools: VS Code, GitHub, Postman, Figma, Canva</div>
-    <div style="padding-left: 20px; text-indent: -20px;">• Web Tech: HTML5, CSS3, React, Express, NodeJS, Bootstrap, Tailwind CSS</div>
-    <div style="padding-left: 20px; text-indent: -20px;">• Database: SQL, MongoDB</div>
-    <div style="padding-left: 20px; text-indent: -20px;">• Focus: Web Development, Full Stack Development, UI/UX Design</div>
+    <span style="padding-left: 20px; text-indent: -20px;">• Languages: C/C++, Python, Java, JavaScript</span>
+    <span style="padding-left: 20px; text-indent: -20px;">• Dev Tools: VS Code, GitHub, Postman, Figma, Canva</span>
+    <span style="padding-left: 20px; text-indent: -20px;">• Web Tech: HTML5, CSS3, React, Express, NodeJS, Bootstrap, Tailwind CSS</span>
+    <span style="padding-left: 20px; text-indent: -20px;">• Database: SQL, MongoDB</span>
+    <span style="padding-left: 20px; text-indent: -20px;">• Focus: Web Development, Full Stack Development, UI/UX Design</span>
+
   </div>`,
 
   resume: `
@@ -86,22 +87,22 @@ const commands = {
 };
 
 const aboutCommands = {
-  help: "You know what this does. 🙄 Want some hints? 😏",
   whois: "Who is Sagar? 🤔 The brains behind this terminal! 💡",
-  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",
-  social: "Connect with me. 🌐 Let's network! 🤝",
+  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",  // workikng
+  social: "Connect with me. 🌐 Let's network! 🤝",  // working
   projects: "Check out projects. 💻 Prepare to be amazed! ✨",
-  joke: "Get a programming joke. 😄",
-  theme: "Change terminal theme. 🎨",
-  education: "View my academic journey. 🎓",
+  joke: "Get a programming joke. 😄",  // working
+  theme: "Change terminal theme. 🎨",  // working
+  education: "View my academic journey. 🎓",    // working
   experience: "Check out my work experience. 💼",
   about: "Learn more about me. 👨‍💻",
   certifications: "View my certifications. 📜",
   hackathons: "See my hackathon adventures. 🏆",
   skills: "Explore my technical skills. 🛠️",
-  resume: "Download my resume. 📄",
+  resume: "Download my resume. 📄",  // working
   contact: "Let's get in touch! 📧",
-  clear: "Clear terminal. 🧹 Keep it tidy! 😊"
+  help: "You know what this does. 🙄 Want some hints? 😏", // working
+  clear: "Clear terminal. 🧹 Keep it tidy! 😊"  // working
 };
 
 const socials = {
@@ -210,6 +211,7 @@ function displayCommand(command) {
 
 function displayOutput(output) {
   if (output instanceof Promise) {
+    commandLine.disabled = true; // Disable input while fetching
     output
       .then((data) => {
         const outputElement = document.createElement("pre");
@@ -217,9 +219,13 @@ function displayOutput(output) {
         outputElement.textContent = data;
         terminalOutput.appendChild(outputElement);
         scrollToBottom();
+        commandLine.disabled = false; // Re-enable input after display
+        commandLine.focus();
       })
       .catch((error) => {
         console.error("Error displaying output:", error);
+        commandLine.disabled = false;
+        commandLine.focus();
       });
   } else {
     const outputElement = document.createElement("p");
@@ -237,6 +243,10 @@ function handleContact(name, email, message) {
 }
 
 function processCommand(command) {
+  if (command === "joke") {
+    return fetchJoke();
+  }
+
   if (command.startsWith("contact")) {
     const args = command.split(" ");
     if (args.length >= 4) {
@@ -274,8 +284,6 @@ function processCommand(command) {
     return output;
   } else if (command === "banner") {
     return ``;
-  } else if (command === "joke") {
-    return fetchJoke();
   } else if (command.startsWith("theme")) {
     if (command === "theme") {
       let availableThemesMsg = "Available themes: ";
