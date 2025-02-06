@@ -93,7 +93,7 @@ const aboutCommands = {
   projects: "Check out projects. 💻 Prepare to be amazed! ✨",
   joke: "Get a programming joke. 😄",  // working
   theme: "Change terminal theme. 🎨",  // working
-  education: "View my academic journey. 🎓",    // working
+  education: "View my academic journey. 🎓",  // working
   experience: "Check out my work experience. 💼",
   about: "Learn more about me. 👨‍💻",
   certifications: "View my certifications. 📜",
@@ -256,6 +256,9 @@ function processCommand(command) {
       return handleContact(name, email, message);
     } else {
       return `
+        Call: <a href="tel:+91%208269087890" target="_blank" class="link">+91 8269087890</a>
+        Email: <a href="mailto:officialsagar006@gmail.com" target="_blank" class="link">officialsagar006@gmail.com</a>
+        
         📧 Contact Form Usage:
         contact [name] [email] [message]
         
