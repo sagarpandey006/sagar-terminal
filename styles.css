@@ -115,11 +115,11 @@ table {
     display: flex;
     flex-direction: row;
     align-items: center;
-    max-width: 10rem;
+    /* max-width: 15rem; */
 }
 
 #command-line {
-    max-width: calc(100% - 80px);
+    /* max-width: calc(100% - 80px); */
     flex-grow: 1;
     background-color: transparent;
     border: none;

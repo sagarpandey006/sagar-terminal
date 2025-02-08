@@ -52,11 +52,9 @@ const commands = {
   `,
   certifications: `
     📜 Certifications:
-    
-    • Web Development Bootcamp - Udemy (2023)
-    • Python for Data Science - Coursera (2023)
-    • Advanced JavaScript - freeCodeCamp (2022)
-    • IoT Fundamentals - Cisco (2022)
+    <a href="Backend PW certificate.pdf" class="link" target="_blank">• Backend Development Course - PW Skills (2025)</a>
+    <a href="Python Udemy Certification.pdf" class="link" target="_blank">• Python Python - Udmeny (August 2023)</a>
+    <a href="java NPTEL.pdf" class="link" target="_blank">• Programming in Java - NPTEL Certificate (2023)</a>
   `,
   hackathons: `
     🏆 Hackathon Experience:
@@ -70,15 +68,14 @@ const commands = {
       - Won Best UI/UX Design award
   `,
 
-  skills: `<div style="padding-left: 4px; line-height: 0.8;">
-    <div>🛠️ Technical Skills:</div>
-    <span style="padding-left: 20px; text-indent: -20px;">• Languages: C/C++, Python, Java, JavaScript</span>
-    <span style="padding-left: 20px; text-indent: -20px;">• Dev Tools: VS Code, GitHub, Postman, Figma, Canva</span>
-    <span style="padding-left: 20px; text-indent: -20px;">• Web Tech: HTML5, CSS3, React, Express, NodeJS, Bootstrap, Tailwind CSS</span>
-    <span style="padding-left: 20px; text-indent: -20px;">• Database: SQL, MongoDB</span>
-    <span style="padding-left: 20px; text-indent: -20px;">• Focus: Web Development, Full Stack Development, UI/UX Design</span>
-
-  </div>`,
+  skills: `🛠️ Technical Skills:
+    
+  • Languages : C, C++, Python, Java, JavaScript
+  • Developer Tools : VS Code,GitHub,Postman, Figma, Canva
+  • Technologies/Frameworks : HTML5, CSS3, React, Express, NodeJS, Bootstrap , Tailwind CSS
+  • Cloud/Databases : SQL, MongoDB
+  • Areas of Interest : Web Development
+  `,
 
   resume: `
     📄 My Resume:
@@ -96,11 +93,11 @@ const aboutCommands = {
   education: "View my academic journey. 🎓",  // working
   experience: "Check out my work experience. 💼",
   about: "Learn more about me. 👨‍💻",
-  certifications: "View my certifications. 📜",
+  certifications: "View my certifications. 📜",  // working
   hackathons: "See my hackathon adventures. 🏆",
-  skills: "Explore my technical skills. 🛠️",
+  skills: "Explore my technical skills. 🛠️",  // working
   resume: "Download my resume. 📄",  // working
-  contact: "Let's get in touch! 📧",
+  contact: "Let's get in touch! 📧", // working
   help: "You know what this does. 🙄 Want some hints? 😏", // working
   clear: "Clear terminal. 🧹 Keep it tidy! 😊"  // working
 };
