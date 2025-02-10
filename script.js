@@ -32,7 +32,39 @@ const commands = {
     $ echo "Remember"
     > In a world of GUIs, sometimes CLI is just cooler 😎
   `,
-  projects: `Here's the project gallery: <a href="https://project-gallery-eight.vercel.app/" class="link" target="_blank">Project Gallery</a> 🌟`,
+  projects: `
+    📂 Project Directory: /root/featured-projects
+        
+    🚀 Bail-Reckoner/ <a href="https://bailreckonerr.netlify.app/" target="_blank" class="link">Live Demo</a> / <a href="https://github.com/sagarpandey006/bail-reckoner" target="_blank" class="link">GitHub</a>
+    =====================================
+    > A legal tech innovation revolutionizing bail applications
+    
+    $ cat project-details.txt
+    • Built with: React.js, Node.js, MongoDB
+    • Key Features:
+      - Streamlined bail application process
+      - Smart form automation
+      - Legal document generation
+     
+    🎮 Mind-scool/ <a href="https://mindscool.netlify.app/" target="_blank" class="link">Live Demo</a> / <a href="https://github.com/sagarpandey006/Mind-scool" target="_blank" class="link">GitHub</a>
+    =====================================
+    > Gamified mental wellness platform for better mental health
+    
+    $ cat project-details.txt
+    • Built with: React.js, Express.js, MongoDB
+    • Key Features:
+      - Interactive mental exercises
+      - Progress tracking dashboard
+      - Personalized wellness journey
+    
+    $ echo "Want to see more?"
+    > Check out my GitHub profile for additional projects! 
+    > Type 'social' to find my GitHub link 🔍
+    
+    $ echo "Collaboration?"
+    > I'm always open to working on exciting projects!
+    > Type 'contact' to reach out 📧
+  `,
   contact:
     "Contact me at officialsagar006@gmail.com 📧 Just don't spam me with cat pictures! 🐱",
   education: `
@@ -89,7 +121,8 @@ const commands = {
     • Version βeta 2024
   `,
 
-  skills: `🛠️ Technical Skills:
+  skills: `
+  🛠️ Technical Skills:
     
   • Languages : C, C++, Python, Java, JavaScript
   • Developer Tools : VS Code,GitHub,Postman, Figma, Canva
@@ -106,22 +139,22 @@ const commands = {
 
 const aboutCommands = {
   whois: "Who is Sagar? 🤔 The brains behind this terminal! 💡",  // working
-  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",  // workikng 
+  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",       // workikng 
   why_terminal: "Curious why this is a terminal? 🤔 Let me explain with style! 💫",  // working
-  social: "Connect with me. 🌐 Let's network! 🤝",  // working
-  projects: "Check out projects. 💻 Prepare to be amazed! ✨",
-  joke: "Get a programming joke. 😄",  // working
-  theme: "Change terminal theme. 🎨",  // working
-  education: "View my academic journey. 🎓",  // working
+  education: "View my academic journey. 🎓",                  // working
+  certifications: "View my certifications. 📜",               // working
+  projects: "Check out projects. 💻 Prepare to be amazed! ✨",  // working
+  hackathons: "See my hackathon adventures. 🏆",                 // working
+  skills: "Explore my technical skills. 🛠️",                    // working
   // experience: "Check out my work experience. 💼",
-  about: "Learn more about me. 👨‍💻",
-  certifications: "View my certifications. 📜",  // working
-  hackathons: "See my hackathon adventures. 🏆",  // working
-  skills: "Explore my technical skills. 🛠️",  // working
-  resume: "Download my resume. 📄",  // working
-  contact: "Let's get in touch! 📧", // working
-  help: "You know what this does. 🙄 Want some hints? 😏", // working
-  clear: "Clear terminal. 🧹 Keep it tidy! 😊"  // working
+  // about: "Learn more about me. 👨‍💻",
+  resume: "Download my resume. 📄",                           // working
+  contact: "Let's get in touch! 📧",                          // working
+  social: "Connect with me. 🌐 Let's network! 🤝",            // working
+  joke: "Get a programming joke. 😄",                         // working
+  theme: "Change terminal theme. 🎨",                         // working
+  help: "You know what this does. 🙄 Want some hints? 😏",    // working
+  clear: "Clear terminal. 🧹 Keep it tidy! 😊"               // working
 };
 
 const socials = {
