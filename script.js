@@ -3,12 +3,35 @@ const commandLine = document.getElementById("command-line");
 const terminal = document.getElementById("terminal");
 
 const commands = {
-  whois: 
-    `Name: Sagar Pandey
+  
+  whois: `
+    Name: Sagar Pandey
     Education: Bachelor of Technology in IoT @ SATI, Vidisha
-    Interests: Web Devlopment 💻, Python 🐍, SQL 📊, Data Science 📈`,
+    Interests: Web Devlopment 💻 and UI/UX Designing✨`,
   whoami:
     "You are a visitor to my terminal. I will soon find out who you are. 🕵️‍♂️ But for now, enjoy the mystery! 🕵️‍♀️",
+
+  why_terminal: `
+    🤔 Why A Terminal Portfolio?
+    
+    $ Loading philosophical response...
+    > Because normal portfolios are too mainstream! 🌊
+    
+    $ Running deeper_analysis.sh
+    > As a developer who loves breaking conventions, I wanted my portfolio to:
+      • Be a reflection of where we developers feel most at home - the terminal 🏠
+      • Stand out from the typical scroll-based portfolios 📜
+      • Actually demonstrate my coding style while showcasing my work 💻
+      • Give visitors a taste of developer life through commands 🚀
+      • Create an interactive experience that's both fun and professional 🎮
+    
+    $ cat wisdom.txt
+    > This isn't just a portfolio; it's a playground for curiosity.
+    > If you're exploring these commands, you're already thinking differently! 💡
+    
+    $ echo "Remember"
+    > In a world of GUIs, sometimes CLI is just cooler 😎
+  `,
   projects: `Here's the project gallery: <a href="https://project-gallery-eight.vercel.app/" class="link" target="_blank">Project Gallery</a> 🌟`,
   contact:
     "Contact me at officialsagar006@gmail.com 📧 Just don't spam me with cat pictures! 🐱",
@@ -82,14 +105,15 @@ const commands = {
 };
 
 const aboutCommands = {
-  whois: "Who is Sagar? 🤔 The brains behind this terminal! 💡",
-  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",  // workikng
+  whois: "Who is Sagar? 🤔 The brains behind this terminal! 💡",  // working
+  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",  // workikng 
+  why_terminal: "Curious why this is a terminal? 🤔 Let me explain with style! 💫",  // working
   social: "Connect with me. 🌐 Let's network! 🤝",  // working
   projects: "Check out projects. 💻 Prepare to be amazed! ✨",
   joke: "Get a programming joke. 😄",  // working
   theme: "Change terminal theme. 🎨",  // working
   education: "View my academic journey. 🎓",  // working
-  experience: "Check out my work experience. 💼",
+  // experience: "Check out my work experience. 💼",
   about: "Learn more about me. 👨‍💻",
   certifications: "View my certifications. 📜",  // working
   hackathons: "See my hackathon adventures. 🏆",  // working
@@ -251,6 +275,7 @@ function processCommand(command) {
       return handleContact(name, email, message);
     } else {
       return `
+        📧 Just don't spam me with cat pictures! 🐱
         Call: <a href="tel:+91%208269087890" target="_blank" class="link">+91 8269087890</a>
         Email: <a href="mailto:officialsagar006@gmail.com" target="_blank" class="link">officialsagar006@gmail.com</a>
         
