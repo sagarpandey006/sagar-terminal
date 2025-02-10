@@ -60,12 +60,10 @@ const commands = {
     🏆 Hackathon Experience:
     
     • Smart India Hackathon 2023
-      - Developed an IoT-based solution for smart agriculture
-      - Secured 2nd position among 100+ teams
-    
-    • Code For Good 2023
-      - Built a web application for NGO management
-      - Won Best UI/UX Design award
+    • Smart India Hackathon 2024
+    • Hackoverflow 2.0 2024
+    • Code Conquest 2024
+    • Version βeta 2024
   `,
 
   skills: `🛠️ Technical Skills:
@@ -94,7 +92,7 @@ const aboutCommands = {
   experience: "Check out my work experience. 💼",
   about: "Learn more about me. 👨‍💻",
   certifications: "View my certifications. 📜",  // working
-  hackathons: "See my hackathon adventures. 🏆",
+  hackathons: "See my hackathon adventures. 🏆",  // working
   skills: "Explore my technical skills. 🛠️",  // working
   resume: "Download my resume. 📄",  // working
   contact: "Let's get in touch! 📧", // working
