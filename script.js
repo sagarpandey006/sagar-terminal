@@ -133,7 +133,7 @@ const commands = {
 
   resume: `
     📄 My Resume:
-    <a href="Resume.pdf.pdf" class="link" target="_blank">Download Resume</a>
+    <a href="Sagar Pandey Resume.pdf.pdf" class="link" target="_blank">Download Resume</a>
   `
 };
 
