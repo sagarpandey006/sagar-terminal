@@ -146,7 +146,7 @@ const aboutCommands = {
   projects: "Check out projects. 💻 Prepare to be amazed! ✨",  // working
   hackathons: "See my hackathon adventures. 🏆",                 // working
   skills: "Explore my technical skills. 🛠️",                    // working
-  // experience: "Check out my work experience. 💼",
+  // experience: "Check out my work experience.💼",
   // about: "Learn more about me. 👨‍💻",
   resume: "Download my resume. 📄",                           // working
   contact: "Let's get in touch! 📧",                          // working
