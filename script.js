@@ -85,8 +85,8 @@ const commands = {
   experience: `
     💼 Work Experience:
     
-    • Software Developer Intern (Jan 2024 - Present)
-      Company Name
+    • AIML Intern (Jan 2024 - Present)
+      YBI Foundation
       - Developed and maintained web applications using React.js
       - Implemented responsive designs and REST APIs
     
