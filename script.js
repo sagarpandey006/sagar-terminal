@@ -85,9 +85,9 @@ const commands = {
   experience: `
     💼 Work Experience:
     
-    • Software Developer Intern (Jan 2024 - Present)
-      Company Name
-      - Developed and maintained movie recommendation platform
+    • AIML Intern (Jan 2024 - Present)
+      YBI Foundation
+      - Developed and maintained web applications using React.js
       - Implemented responsive designs and REST APIs
     
     • Web Development Intern (June 2023 - Dec 2023)
