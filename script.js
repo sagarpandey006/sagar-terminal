@@ -87,7 +87,7 @@ const commands = {
     
     • Software Developer Intern (Jan 2024 - Present)
       Company Name
-      - Developed and maintained web applications using React.js
+      - Developed and maintained movie recommendation platform
       - Implemented responsive designs and REST APIs
     
     • Web Development Intern (June 2023 - Dec 2023)
