@@ -118,7 +118,7 @@ const commands = {
     • Smart India Hackathon 2024
     • Hackoverflow 2.0 2024
     • Code Conquest 2024
-    • Version βeta 2024
+    • Version βeta 2.0 2024
   `,
 
   skills: `
