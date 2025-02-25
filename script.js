@@ -112,7 +112,7 @@ const commands = {
     <a href="java NPTEL.pdf" class="link" target="_blank">• Programming in Java - NPTEL Certificate (2023)</a>
   `,
   hackathons: `
-    🏆 Hackathon Experience:
+    🏆 Hackathon Experience:-
     
     • Smart India Hackathon 2023
     • Smart India Hackathon 2024
