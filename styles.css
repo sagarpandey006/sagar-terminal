@@ -1,155 +1,232 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-
-:root {
-    --background-color: #1F2430;
-    --foreground-color: #FFA759;
-    --red-color: #FF3333;
-    --green-color: #BAE67E;
-    --yellow-color: #FFA759;
-    --blue-color: #73D0FF;
-    --purple-color: #D4BFFF;
-    --cyan-color: #95E6CB;
-    --white-color: #CBCCC6;
-    --bright-black-color: #707A8C;
-}
-
 body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-color);
-    color: var(--foreground-color);
-}
-
-#terminal-container {
+    background-color: #2b2b2b;
+    color: #d2d2d2;
+    font-family: 'Courier New', Courier, monospace;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-#terminal {
-    background-color: var(--background-color);
-    border-radius: 10px;
-    border: 2px solid var(--foreground-color);
+.terminal {
+    background-color: #1d1f21;
+    border-radius: 8px;
     width: 90%;
-    max-width: 90%;
-    height: 80%;
-    overflow-y: auto;
-    font-family: "JetBrains Mono", monospace;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 1.1rem;
-    padding: 1rem;
+    max-width: 900px;
+    min-height: 500px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    animation: slideIn 0.5s ease-out;
 }
 
-::-moz-selection {
-    /* Code for Firefox */
-    color: var(--background-color);
-    background: var(--bright-black-color);
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-::selection {
-    color: var(--background-color);
-    background: var(--bright-black-color);
-}
-
-#terminal-output {
-    white-space: pre-line;
-}
-
-.output {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    padding-left: 1rem;
-}
-
-.link {
-    color: var(--blue-color);
-    text-decoration: none;
-}
-
-.link:hover {
-    color: var(--cyan-color)
-}
-
-.name {
-    color: var(--purple-color);
-}
-
-.available-command {
-    color: var(--green-color);
-}
-
-.unavailable-command {
-    color: var(--red-color);
-}
-
-table {
-    border-collapse: collapse;
-}
-
-.available-command,
-.name,
-.command-description {
-    padding: 10px 20px;
-}
-
-.available-command {
-    text-align: left;
-}
-
-.command-description {
-    text-align: left;
-}
-
-#command-line {
-    font-family: "JetBrains Mono", monospace;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 1.1rem;
-}
-
-#input-line {
+.terminal-header {
+    background-color: #1a1a1a;
+    padding: 12px 20px;
+    font-weight: bold;
+    color: #00ff00;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    /* max-width: 15rem; */
+    border-bottom: 1px solid #333;
 }
 
-#command-line {
-    /* max-width: calc(100% - 80px); */
-    flex-grow: 1;
-    background-color: transparent;
-    border: none;
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.control-btn:hover {
+    transform: scale(1.2);
+}
+
+.close { 
+    background-color: #ff5f57; 
+}
+
+.minimize { 
+    background-color: #ffbd2e; 
+}
+
+.maximize { 
+    background-color: #28ca42; 
+}
+
+.terminal-body {
+    padding: 20px;
+    line-height: 1.6;
+    max-height: 85vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #00ff00 #1d1f21;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: #1d1f21;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #00cc00;
+}
+
+.prompt {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.prompt::before {
+    content: "sagar@desktop:~$ ";
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.user-input {
     outline: none;
-    color: var(--foreground-color);
-    caret-color: var(--foreground-color);
+    border: none;
+    background: none;
+    color: #f4f3f3;
+    flex-grow: 1;
+    display: inline-block;
+    margin-left: 5px;
+    font-family: inherit;
+    font-size: inherit;
 }
 
-#prompt {
-    white-space: nowrap;
-    font-size: 1.1rem;
-    color: var(--red-color);
-    padding: 1rem;
+/* .user-input::after {
+    content: "_";
+    animation: blink 1s infinite;
+    color: #00ff00;
+} */
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
-::-webkit-scrollbar {
-    height: 0px;
-    width: 3.69px;
+p {
+    margin: 8px 0;
 }
 
-::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 1rem;
+.command-output {
+    color: white;
+    margin: 10px 0;
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--foreground-color);
-    border-radius: 1rem;
+.welcome-text {
+    color: #87ceeb;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #419fff;
+.ascii-art {
+    color: #00ff00;
+    font-size: 0.8em;
+    line-height: 1.2;
+    white-space: pre;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 15px 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.error {
+    color: #ff6b6b;
+}
+
+.success {
+    color: #51cf66;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .terminal {
+        width: 95%;
+        margin: 10px;
+        min-height: 400px;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        font-size: 14px;
+        max-height: 60vh;
+    }
+    
+    .terminal-header {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .ascii-art {
+        font-size: 0.6em;
+    }
+    
+    .control-btn {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-body {
+        padding: 10px;
+        font-size: 12px;
+    }
+    
+    .terminal-header {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .ascii-art {
+        font-size: 0.5em;
+    }
 }

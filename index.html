@@ -1,27 +1,38 @@
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sagar | PorfolioShell</title>
+    <title>SAGAR/Terminal</title>
+    <link rel="icon" href="/images/favicon.ico" type="images/favicon">
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="terminal.png" type="image/x-icon">
 </head>
-
 <body>
-    <div id="terminal-container">
-        <div id="terminal">
-            <div id="terminal-output"></div>
-            <div id="input-line">
-                <span id="prompt">visitor@shell:~/sagar $</span>
-                <input type="text" id="command-line" autocomplete="off" autofocus>
+    <div class="terminal">
+        <div class="terminal-header">
+            <span>C:\Users\Sagar\terminal</span>
+            <div class="window-controls">
+                <div class="control-btn minimize"></div>
+                <div class="control-btn maximize"></div>
+                <div class="control-btn close"></div>
             </div>
         </div>
+        <div class="terminal-body">
+            <div class="ascii-art">
+  ____     _      ____     _      ____  
+ / ___|   / \    / ___|   / \    |  _ \ 
+ \___ \  / _ \  | |  _   / _ \   | |_) |
+  ___) |/ ___ \ | |_| | / ___ \  |  _ < 
+ |____//_/   \_\ \____//_/   \_\ |_| \_\
+
+            </div>
+            <p class="welcome-text">---</p>
+            <p class="welcome-text">Hey There! I am SAGAR Pandey, Bachelor of Technology in IoT @ SATI, Vidisha.</p>
+            <p class="welcome-text">An aspiring computer science student with strong interest in coding and frontend development.</p>
+            <p class="welcome-text">Won hackathons, published in an international conference and built a company's website.</p>
+            <p class="welcome-text">---</p>
+            <p>To access the list of available commands, just enter "<span style="color:#00ff00;">help</span>".</p>
+        </div>
     </div>
-
     <script src="script.js"></script>
-    </script>
 </body>
-
 </html>

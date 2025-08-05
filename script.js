@@ -1,394 +1,333 @@
-const terminalOutput = document.getElementById("terminal-output");
-const commandLine = document.getElementById("command-line");
-const terminal = document.getElementById("terminal");
+document.addEventListener("DOMContentLoaded", function() {
+    const terminalBody = document.querySelector(".terminal-body");
+    const terminalHeader = document.querySelector(".terminal-header");
+    const terminal = document.querySelector(".terminal");
+    const commandHistory = [];
+    let historyIndex = -1;
+    let themeColors = {
+        textColor: '#00ff00',
+        headerColor: 'white',
+    };
 
-const commands = {
-  
-  whois: `
-    Name: Sagar Pandey
-    Education: Bachelor of Technology in IoT @ SATI, Vidisha
-    Interests: Web Devlopment 💻 and UI/UX Designing✨`,
-  whoami:
-    "You are a visitor to my terminal. I will soon find out who you are. 🕵️‍♂️ But for now, enjoy the mystery! 🕵️‍♀️",
+    const commands = {
+        "help": () => {
+            return `
+                <span style="color:${themeColors.textColor};">about</span>          - learn more about me <br>
+                <span style="color:${themeColors.textColor};">clear</span>          - clear the terminal display <br>
+                <span style="color:${themeColors.textColor};">echo</span>           - display custom text or messages <br>
+                <span style="color:${themeColors.textColor};">education</span>      - explore my academic journey <br>
+                <span style="color:${themeColors.textColor};">exit</span>           - close the current session <br>
+                <span style="color:${themeColors.textColor};">help</span>           - get a list of available commands <br>
+                <span style="color:${themeColors.textColor};">history</span>        - see your command usage history <br>
+                <span style="color:${themeColors.textColor};">portfolio</span>      - view my website <br>
+                <span style="color:${themeColors.textColor};">projects</span>       - check out my projects <br>
+                <span style="color:${themeColors.textColor};">skills</span>         - view my skill set <br>
+                <span style="color:${themeColors.textColor};">socials</span>        - discover my social media profiles <br>
+                <span style="color:${themeColors.textColor};">themes</span>         - browse through available themes <br>
+                <span style="color:${themeColors.textColor};">welcome</span>        - view the introductory section <br>
+                <span style="color:${themeColors.textColor};">whoami</span>         - find out who the current user is <br>
+                <span style="color:${themeColors.textColor};">contact</span>        - get all contact information <br>
+            `;
+        },
 
-  why_terminal: `
-    🤔 Why A Terminal Portfolio?
-    
-    $ Loading philosophical response...
-    > Because normal portfolios are too mainstream! 🌊
-    
-    $ Running deeper_analysis.sh
-    > As a developer who loves breaking conventions, I wanted my portfolio to:
-      • Be a reflection of where we developers feel most at home - the terminal 🏠
-      • Stand out from the typical scroll-based portfolios 📜
-      • Actually demonstrate my coding style while showcasing my work 💻
-      • Give visitors a taste of developer life through commands 🚀
-      • Create an interactive experience that's both fun and professional 🎮
-    
-    $ cat wisdom.txt
-    > This isn't just a portfolio; it's a playground for curiosity.
-    > If you're exploring these commands, you're already thinking differently! 💡
-    
-    $ echo "Remember"
-    > In a world of GUIs, sometimes CLI is just cooler 😎
-  `,
-  projects: `
-    📂 Project Directory: /root/featured-projects
+        "themes": () => {
+            return `Available themes: <br><span style="color:${themeColors.textColor};">ubuntu</span><br><span style="color:${themeColors.textColor};">git-bash</span><br><span style="color:${themeColors.textColor};">sunset</span><br><span style="color:${themeColors.textColor};">sweet</span><br><span style="color:${themeColors.textColor};">matrix</span><br><span style="color:${themeColors.textColor};">ocean</span><br><br>To change themes, type 'themes go to "theme-name"'.<br>Example: <span style="color:${themeColors.textColor};">themes go to sunset</span>`;
+        },
         
-    🚀 Bail-Reckoner/ <a href="https://bailreckonerr.netlify.app/" target="_blank" class="link">Live Demo</a> / <a href="https://github.com/sagarpandey006/bail-reckoner" target="_blank" class="link">GitHub</a>
-    =====================================
-    > A legal tech innovation revolutionizing bail applications
-    
-    $ cat project-details.txt
-    • Built with: React.js, Node.js, MongoDB
-    • Key Features:
-      - Streamlined bail application process
-      - Smart form automation
-      - Legal document generation
-     
-    🎮 Mind-scool/ <a href="https://mindscool.netlify.app/" target="_blank" class="link">Live Demo</a> / <a href="https://github.com/sagarpandey006/Mind-scool" target="_blank" class="link">GitHub</a>
-    =====================================
-    > Gamified mental wellness platform for better mental health
-    
-    $ cat project-details.txt
-    • Built with: React.js, Express.js, MongoDB
-    • Key Features:
-      - Interactive mental exercises
-      - Progress tracking dashboard
-      - Personalized wellness journey
-    
-    $ echo "Want to see more?"
-    > Check out my GitHub profile for additional projects! 
-    > Type 'social' to find my GitHub link 🔍
-    
-    $ echo "Collaboration?"
-    > I'm always open to working on exciting projects!
-    > Type 'contact' to reach out 📧
-  `,
-  contact:
-    "Contact me at officialsagar006@gmail.com 📧 Just don't spam me with cat pictures! 🐱",
-  education: `
-    🎓 Education History:
-    
-    • B.Tech in Internet of Things (2022 - 2026)
-      SATI, Vidisha
-      CGPA: 8.02/10.0
-    
-    • Higher Secondary (2022)
-      Gurunanak Mission Higher Secondary School, Maihar
-      Percentage: 91.33%
-    
-    • Secondary Education (2020)
-      Gurunanak Mission Higher Secondary School, Maihar
-      Percentage: 95.66%
-  `,
-  experience: `
-    💼 Work Experience:
-    
-    • AIML Intern (Jan 2024 - Present)
-      YBI Foundation
-      - Developed and maintained web applications using React.js
-      - Implemented responsive designs and REST APIs
-    
-    • Web Development Intern (June 2023 - Dec 2023)
-      Company Name
-      - Created responsive websites using HTML, CSS, and JavaScript
-      - Worked on backend development using Node.js
-  `,
-  about: `
-    👨‍💻 About Me:
-    
-    I'm a passionate developer with a strong foundation in web technologies and IoT.
-    I love building things that live on the internet and solving complex problems.
-    My goal is to always build products that provide pixel-perfect, performant experiences.
-    
-    🌱 Currently learning: Advanced React Patterns, System Design
-    🤝 Open for: Full-time opportunities, Collaborations, Freelance Projects
-  `,
-  certifications: `
-    📜 Certifications:
-    <a href="Backend PW certificate.pdf" class="link" target="_blank">• Backend Development Course - PW Skills (2025)</a>
-    <a href="Python Udemy Certification.pdf" class="link" target="_blank">• Python Python - Udmeny (August 2023)</a>
-    <a href="java NPTEL.pdf" class="link" target="_blank">• Programming in Java - NPTEL Certificate (2023)</a>
-  `,
-  hackathons: `
-    🏆 Hackathon Experience:-
-    
-    • Smart India Hackathon 2023
-    • Smart India Hackathon 2024
-    • Hackoverflow 2.0 2024
-    • Code Conquest 2024
-    • Version βeta 2.0 2024
-  `,
+        "themes go to ubuntu": () => {
+            terminal.style.backgroundColor = '#300a24';
+            terminalHeader.style.backgroundColor = '#595959';
+            terminalHeader.style.color = 'white';
+            terminalBody.style.color = '#00ff00';
+            themeColors.textColor = '#00ff00';
+            return "<span class='success'>✓ Switched to Ubuntu theme!</span>";
+        },
 
-  skills: `
-  🛠️ Technical Skills:
-    
-  • Languages : C, C++, Python, Java, JavaScript
-  • Developer Tools : VS Code,GitHub,Postman, Figma, Canva
-  • Technologies/Frameworks : HTML5, CSS3, React, Express, NodeJS, Bootstrap , Tailwind CSS
-  • Cloud/Databases : SQL, MongoDB
-  • Areas of Interest : Web Development
-  `,
+        "themes go to git-bash": () => {
+            terminal.style.background = 'linear-gradient(135deg, #1a1a1a, #2e2e2e)'; 
+            terminalHeader.style.background = 'linear-gradient(135deg, #2e2e2e, #444444)';
+            terminalHeader.style.color = '#00ff00'; 
+            terminalBody.style.color = '#00ff00'; 
+            themeColors.textColor = '#00ff00';
+            return "<span class='success'>✓ Switched to Git-Bash theme!</span>";
+        },
 
-  resume: `
-    📄 My Resume:
-    <a href="Sagar Pandey Resume.pdf.pdf" class="link" target="_blank">Download Resume</a>
-  `
-};
+        "themes go to sunset": () => {
+            terminal.style.background = 'linear-gradient(135deg, #ff7f50, #ff4500)'; 
+            terminalHeader.style.background = 'linear-gradient(135deg, #ff7f50, #ff4500)'; 
+            terminalHeader.style.color = '#ffffff'; 
+            terminalBody.style.color = '#fffb00'; 
+            themeColors.textColor = '#fffb00';
+            return "<span class='success'>✓ Switched to Sunset theme!</span>";
+        },
 
-const aboutCommands = {
-  whois: "Who is Sagar? 🤔 The brains behind this terminal! 💡",  // working
-  whoami: "Who are you? 🧐 Dive into self-discovery! 🌊",       // workikng 
-  why_terminal: "Curious why this is a terminal? 🤔 Let me explain with style! 💫",  // working
-  education: "View my academic journey. 🎓",                  // working
-  certifications: "View my certifications. 📜",               // working
-  projects: "Check out projects. 💻 Prepare to be amazed! ✨",  // working
-  hackathons: "See my hackathon adventures. 🏆",                 // working
-  skills: "Explore my technical skills. 🛠️",                    // working
-  // experience: "Check out my work experience. 💼",
-  // about: "Learn more about me. 👨‍💻",
-  resume: "Download my resume. 📄",                           // working
-  contact: "Let's get in touch! 📧",                          // working
-  social: "Connect with me. 🌐 Let's network! 🤝",            // working
-  joke: "Get a programming joke. 😄",                         // working
-  theme: "Change terminal theme. 🎨",                         // working
-  help: "You know what this does. 🙄 Want some hints? 😏",    // working
-  clear: "Clear terminal. 🧹 Keep it tidy! 😊"               // working
-};
+        "themes go to sweet": () => {
+            terminal.style.background = 'linear-gradient(135deg, #ffb6c1, #ff69b4)'; 
+            terminalHeader.style.background = 'linear-gradient(135deg, #ffd9df, #ff69b4)'; 
+            terminalHeader.style.color = '#ff178b'; 
+            terminalBody.style.color = '#ff178b'; 
+            themeColors.textColor = '#ff0f9f';
+            return "<span class='success'>✓ Switched to Sweet theme!</span>";
+        },
 
-const socials = {
-  github: `<a href="https://github.com/sagarpandey006" target="_blank" class="link">github.com/sagarpandey006</a>`,
-  linkedin: `<a href="https://linkedin.com/in/sagarpandey006" target="_blank" class="link">linkedin.com/sagarpandey006</a>`,
-  twitter: `<a href="https://twitter.com/sagarpandey006" target="_blank" class="link">twitter.com/sagarpandey006</a>`,
-  leetcode: `<a href="https://leetcode.com/u/sagarpandey006/" target="_blank" class="link">leetcode.com/sagarpandey006/</a>`,
-  geeksforgeeks: `<a href="https://www.geeksforgeeks.org/user/sagarpandey006/" target="_blank" class="link">geeksforgeeks.org/sagarpandey006/</a>`,
-  instagram: `<a href="https://www.instagram.com/sagar_pandey006/" target="_blank" class="link">instagram.com/sagar_pandey006</a>`,
-};
+        "themes go to matrix": () => {
+            terminal.style.background = 'linear-gradient(135deg, #000000, #0d4f0d)'; 
+            terminalHeader.style.background = 'linear-gradient(135deg, #000000, #1a1a1a)'; 
+            terminalHeader.style.color = '#00ff00'; 
+            terminalBody.style.color = '#00ff41'; 
+            themeColors.textColor = '#00ff41';
+            return "<span class='success'>✓ Welcome to the Matrix...</span>";
+        },
 
-const header = "Welcome to Portfolio shell,\nType help to see all the commands";
+        "themes go to ocean": () => {
+            terminal.style.background = 'linear-gradient(135deg, #1e3c72, #2a5298)'; 
+            terminalHeader.style.background = 'linear-gradient(135deg, #1e3c72, #2a5298)'; 
+            terminalHeader.style.color = '#87ceeb'; 
+            terminalBody.style.color = '#87ceeb'; 
+            themeColors.textColor = '#87ceeb';
+            return "<span class='success'>✓ Diving into Ocean theme!</span>";
+        },
 
-const themes = {
-  default: {
-    "--background-color": "#1F2430",
-    "--foreground-color": "#FFA759",
-    "--red-color": "#FF3333",
-    "--green-color": "#BAE67E",
-    "--yellow-color": "#FFA759",
-    "--blue-color": "#73D0FF",
-    "--purple-color": "#D4BFFF",
-    "--cyan-color": "#95E6CB",
-    "--white-color": "#CBCCC6",
-    "--bright-black-color": "#707A8C",
-  },
-  dracula: {
-    "--background-color": "#282a36",
-    "--foreground-color": "#f8f8f2",
-    "--red-color": "#ff5555",
-    "--green-color": "#50fa7b",
-    "--yellow-color": "#f1fa8c",
-    "--blue-color": "#6272a4",
-    "--purple-color": "#bd93f9",
-    "--cyan-color": "#8be9fd",
-    "--white-color": "#f8f8f2",
-    "--bright-black-color": "#44475a",
-  },
-  ayu: {
-    "--background-color": "#0f1419",
-    "--foreground-color": "#e6e1cf",
-    "--red-color": "#ff3333",
-    "--green-color": "#b8cc52",
-    "--yellow-color": "#e7c547",
-    "--blue-color": "#6CA0E6",
-    "--purple-color": "#C578DD",
-    "--cyan-color": "#80CBC4",
-    "--white-color": "#C1C2D3",
-    "--bright-black-color": "#7A8298",
-  },
-  light: {
-    "--background-color": "#ffffff",
-    "--foreground-color": "#000000",
-    "--red-color": "#ff0000",
-    "--green-color": "#00ff00",
-    "--yellow-color": "#ffff00",
-    "--blue-color": "#0000ff",
-    "--purple-color": "#ff00ff",
-    "--cyan-color": "#00ffff",
-    "--white-color": "#ffffff",
-    "--bright-black-color": "#808080",
-  },
-  dark: {
-    "--background-color": "#000000",
-    "--foreground-color": "#ffffff",
-    "--red-color": "#ff0000",
-    "--green-color": "#00ff00",
-    "--yellow-color": "#ffff00",
-    "--blue-color": "#0000ff",
-    "--purple-color": "#ff00ff",
-    "--cyan-color": "#00ffff",
-    "--white-color": "#ffffff",
-    "--bright-black-color": "#808080",
-  },
-};
-
-window.addEventListener("load", (event) => {
-  setTheme(localStorage.getItem("terminal_theme") ?? "default");
-});
-
-displayOutput(header);
-commandLine.focus();
-
-terminal.addEventListener("click", function () {
-  commandLine.focus();
-});
-
-commandLine.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    const command = commandLine.value;
-    const output = processCommand(command.toLowerCase().trim());
-    if (output) {
-      displayCommand(command);
-      displayOutput(output);
-    }
-    commandLine.value = "";
-  }
-});
-
-function displayCommand(command) {
-  const commandElement = document.createElement("p");
-  commandElement.innerHTML = `<span id="prompt">visitor@shell:~/sagar $</span> <span class="command">${command}</span>`;
-  terminalOutput.appendChild(commandElement);
-}
-
-function displayOutput(output) {
-  if (output instanceof Promise) {
-    commandLine.disabled = true; // Disable input while fetching
-    output
-      .then((data) => {
-        const outputElement = document.createElement("pre");
-        outputElement.classList.add("output");
-        outputElement.textContent = data;
-        terminalOutput.appendChild(outputElement);
-        scrollToBottom();
-        commandLine.disabled = false; // Re-enable input after display
-        commandLine.focus();
-      })
-      .catch((error) => {
-        console.error("Error displaying output:", error);
-        commandLine.disabled = false;
-        commandLine.focus();
-      });
-  } else {
-    const outputElement = document.createElement("p");
-    outputElement.classList.add("output");
-    outputElement.innerHTML = output;
-    terminalOutput.appendChild(outputElement);
-    scrollToBottom();
-  }
-}
-
-function handleContact(name, email, message) {
-  const mailtoLink = `mailto:officialsagar006@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-  window.location.href = mailtoLink;
-  return "Opening your email client to send the message...";
-}
-
-function processCommand(command) {
-  if (command === "joke") {
-    return fetchJoke();
-  }
-
-  if (command.startsWith("contact")) {
-    const args = command.split(" ");
-    if (args.length >= 4) {
-      const name = args[1];
-      const email = args[2];
-      const message = args.slice(3).join(" ");
-      return handleContact(name, email, message);
-    } else {
-      return `
-        📧 Just don't spam me with cat pictures! 🐱
-        Call: <a href="tel:+91%208269087890" target="_blank" class="link">+91 8269087890</a>
-        Email: <a href="mailto:officialsagar006@gmail.com" target="_blank" class="link">officialsagar006@gmail.com</a>
+        "about": `
+            �‍💻 About Me:
+            
+            I'm a passionate developer with a strong foundation in web technologies and IoT.
+            I love building things that live on the internet and solving complex problems.
+            My goal is to always build products that provide pixel-perfect, performant experiences.
+            
+            � Currently learning: Advanced React Patterns, System Design
+            🤝 Open for: Full-time opportunities, Collaborations, Freelance Projects`,
         
-        📧 Contact Form Usage:
-        contact [name] [email] [message]
+        "portfolio": () => {
+            window.open("https://sagarpandey006.vercel.app/", "_blank");
+            return "<span class='success'>✓ Opening portfolio in new tab...</span>";
+        }, 
         
-        Example:
-        contact John john@example.com Hello, I'd like to collaborate!
-      `;
-    }
-  }
-  if (command == "") return "<hr hidden />";
-  else if (command === "clear") {
-    clearTerminal();
-    return null;
-  } else if (command === "help") {
-    let output = "<table>";
-    for (let cmd in aboutCommands) {
-      output += `<tr><td class="available-command">${cmd}</td><td class="command-description">${aboutCommands[cmd]}</td></tr>`;
-    }
-    output += "</table>";
-    return output;
-  } else if (command === "social") {
-    let output = "<table>";
-    for (let social in socials) {
-      output += `<tr><td class="name">${social}</td><td class="link">${socials[social]}</td></tr>`;
-    }
-    output += "</table>";
-    return output;
-  } else if (command === "banner") {
-    return ``;
-  } else if (command.startsWith("theme")) {
-    if (command === "theme") {
-      let availableThemesMsg = "Available themes: ";
-      availableThemesMsg += Object.keys(themes).join(", ");
-      availableThemesMsg += '. Type "theme THEME" to change theme to THEME.';
-      return availableThemesMsg;
-    } else {
-      const selectedTheme = command.split(" ")[1];
-      return setTheme(selectedTheme);
-    }
-  } else if (commands.hasOwnProperty(command)) {
-    return commands[command];
-  } else {
-    return `${command}: command not found`;
-  }
-}
+        "clear": () => { 
+            terminalBody.innerHTML = '<p class="welcome-text">Terminal cleared!</p>'; 
+            return ''; 
+        },
+        
+        "echo": (args) => args.length > 0 ? args.join(" ") : "<span class='error'>Usage: echo [text]</span>",
+        
+        "education": () => {
+            return `🎓 <span style="color:${themeColors.textColor};">Education History</span><br>
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+            🏛️ <span style="color:${themeColors.textColor};">B.Tech in Internet of Things</span> (2022 - 2026)<br>
+            SATI, Vidisha<br>
+            CGPA: 8.02/10.0<br><br>
+            📚 <span style="color:${themeColors.textColor};">Higher Secondary</span> (2022)<br>
+            Gurunanak Mission Higher Secondary School, Maihar<br>
+            Percentage: 91.33%<br><br>
+            🏫 <span style="color:${themeColors.textColor};">Secondary Education</span> (2020)<br>
+            Gurunanak Mission Higher Secondary School, Maihar<br>
+            Percentage: 95.66%`;
+        },
+        
 
-function clearTerminal() {
-  terminalOutput.innerHTML = "";
-  displayOutput(header);
-}
+        
+        "exit": () => {
+            return "<span class='success'>👋 Thanks for visiting! See you next time!</span>";
+        },
+        
+        "history": () => commandHistory.length > 0 ? commandHistory.map((cmd, i) => `${i + 1}. ${cmd}`).join("<br>") : "No commands in history yet.",
+        
+        "projects": () => {
+            return `� <span style="color:${themeColors.textColor};">Featured Projects</span><br>
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+            🚀 <span style="color:${themeColors.textColor};">Bail-Reckoner</span><br>
+            <a href="https://bailreckonerr.netlify.app/" target="_blank" class="link">Live Demo</a> / <a href="https://github.com/sagarpandey006/bail-reckoner" target="_blank" class="link">GitHub</a><br>
+            > A legal tech innovation revolutionizing bail applications<br>
+            • Built with: React.js, Node.js, MongoDB<br>
+            • Key Features:<br>
+              - Streamlined bail application process<br>
+              - Smart form automation<br>
+              - Legal document generation<br><br>
+            
+            � <span style="color:${themeColors.textColor};">Mind-scool</span><br>
+            <a href="https://mindscool.netlify.app/" target="_blank" class="link">Live Demo</a> / <a href="https://github.com/sagarpandey006/Mind-scool" target="_blank" class="link">GitHub</a><br>
+            > Gamified mental wellness platform for better mental health<br>
+            • Built with: React.js, Express.js, MongoDB<br>
+            • Key Features:<br>
+              - Interactive mental exercises<br>
+              - Progress tracking dashboard<br>
+              - Personalized wellness journey<br><br>
+            
+            💡 Want to see more? Check out my <a href="https://sagarpandey006.vercel.app/" target="_blank" class="link">portfolio website</a>!<br>
+            📫 Interested in collaborating? Type 'contact' to reach out!`;
+        },
+        
 
-function scrollToBottom() {
-  terminal.scrollTop = terminal.scrollHeight;
-}
+        
+        "skills": () => {
+            return `�️ <span style="color:${themeColors.textColor};">Technical Skills</span><br>
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+             <span style="color:${themeColors.textColor};">Languages</span>: C, C++, Python, Java, JavaScript<br>
+            🛠️ <span style="color:${themeColors.textColor};">Developer Tools</span>: VS Code, GitHub, Postman, Figma, Canva<br>
+            � <span style="color:${themeColors.textColor};">Technologies/Frameworks</span>: HTML5, CSS3, React, Express, NodeJS, Bootstrap, Tailwind CSS<br>
+            🗄️ <span style="color:${themeColors.textColor};">Cloud/Databases</span>: SQL, MongoDB<br>
+            💡 <span style="color:${themeColors.textColor};">Areas of Interest</span>: Web Development`;
+        },
+        
+        "socials": () => {
+            return `🌐 <span style="color:${themeColors.textColor};">Connect with me</span><br>
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+            💼 LinkedIn: <a href="https://linkedin.com/in/sagarpandey006" target="_blank" class="link">linkedin.com/in/sagarpandey006</a><br>
+            👨‍💻 GitHub: <a href="https://github.com/sagarpandey006" target="_blank" class="link">github.com/sagarpandey006</a><br>
+            🐦 Twitter: <a href="https://twitter.com/sagarpandey006" target="_blank" class="link">twitter.com/sagarpandey006</a><br>
+            📊 LeetCode: <a href="https://leetcode.com/u/sagarpandey006/" target="_blank" class="link">leetcode.com/sagarpandey006</a><br>
+            💻 GeeksforGeeks: <a href="https://www.geeksforgeeks.org/user/sagarpandey006/" target="_blank" class="link">geeksforgeeks.org/sagarpandey006</a><br>
+            📸 Instagram: <a href="https://www.instagram.com/sagar_pandey006/" target="_blank" class="link">instagram.com/sagar_pandey006</a><br><br>
+            <span style="color:${themeColors.textColor};">Let's connect and build something amazing together! 🚀</span>`;
+        },
+        
+        "welcome": () => {
+            return `🎉 <span style="color:${themeColors.textColor};">Welcome!</span><br>
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+            👋 Hey There! I am Sagar Pandey<br>
+            🎓 B.Tech in IoT @ SATI, Vidisha<br>
+            💻 A passionate developer with interests in Web Development 💻 and UI/UX Designing ✨<br>
+            � Always learning and growing in the tech world<br><br>
+            Type <span style="color:${themeColors.textColor};">help</span> to explore all available commands!`;
+        },
+        
 
-async function fetchJoke() {
-  try {
-    const response = await fetch(
-      "https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single"
-    );
-    const data = await response.json();
-    return data.joke;
-  } catch (error) {
-    console.error("Error fetching joke:", error);
-    return "Failed to fetch joke. 😕";
-  }
-}
+        
+        "whoami": "👤 guest@user <br>🤔 But you should know who you are!",
+        
 
-function setTheme(theme) {
-  const selectedTheme = themes[theme];
-  if (selectedTheme) {
-    for (const [property, value] of Object.entries(selectedTheme)) {
-      document.documentElement.style.setProperty(property, value);
+        
+        "resume": () => {
+            window.open("https://drive.google.com/file/d/1fpsSQ3-TFbHvym8Fia-MxJG7F0othIM0/view?usp=sharing", "_blank");
+            return `📄 <span style="color:${themeColors.textColor};">My Resume</span><br>
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+            <span class='success'>✓ Opening resume in new tab...</span>`;
+        },
+        
+        "contact": () => {
+            const now = new Date();
+            return `📞 <span style="color:${themeColors.textColor};">Contact Information</span><br>
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+            📧 Email: officialsagar006@gmail.com<br>
+            � Phone: <a href="tel:+91%208269087890" target="_blank" class="link">+91 8269087890</a><br>
+            �💼 LinkedIn: <a href="https://linkedin.com/in/sagarpandey006" target="_blank" class="link">linkedin.com/in/sagarpandey006</a><br>
+            👨‍💻 GitHub: <a href="https://github.com/sagarpandey006" target="_blank" class="link">github.com/sagarpandey006</a><br>
+            🌐 Portfolio: <a href="https://sagarpandey006.vercel.app/" target="_blank" class="link">sagarpandey006.vercel.app</a><br>
+            📅 Current Time: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}<br><br>
+            <span style="color:${themeColors.textColor};">Feel free to reach out! 🚀</span>`;
+        }
+    };
+
+    function processCommand(input) {
+        const [commandName, ...args] = input.toLowerCase().split(" ");
+        let response;
+    
+        if (commands[`${commandName} ${args.join(" ")}`]) {
+            response = typeof commands[`${commandName} ${args.join(" ")}`] === "function" ? 
+                commands[`${commandName} ${args.join(" ")}`](args) : 
+                commands[`${commandName} ${args.join(" ")}`];
+        } else if (commands[commandName]) {
+            response = typeof commands[commandName] === "function" ? 
+                commands[commandName](args) : 
+                commands[commandName];
+        } else {
+            response = `<span class='error'>❌ Command not found: ${commandName}</span><br>Type <span style="color:${themeColors.textColor};">help</span> to see available commands.`;
+        }
+    
+        return response;
     }
-    if (theme !== "default") localStorage.setItem("terminal_theme", theme);
-    else localStorage.removeItem("terminal_theme");
-    return `Theme set to ${theme}.`;
-  } else {
-    return `Theme ${theme} not found.`;
-  }
-}
+
+    function addNewPrompt() {
+        const newPrompt = document.createElement("div");
+        newPrompt.classList.add("prompt");
+        newPrompt.innerHTML = `<span contenteditable="true" class="user-input"></span>`;
+        terminalBody.appendChild(newPrompt);
+
+        const newUserInput = newPrompt.querySelector(".user-input");
+        newUserInput.focus();
+
+        newUserInput.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                const input = newUserInput.textContent.trim();
+                if (input) {
+                    commandHistory.push(input);
+                    historyIndex = commandHistory.length;
+                    newUserInput.setAttribute("contenteditable", "false");
+                    
+                    const response = processCommand(input);
+                    if (response) {
+                        const responseElement = document.createElement("div");
+                        responseElement.classList.add("command-output");
+                        responseElement.innerHTML = response;
+                        terminalBody.appendChild(responseElement);
+                    }
+                    addNewPrompt();
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
+                }
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    newUserInput.textContent = commandHistory[historyIndex];
+                    placeCaretAtEnd(newUserInput);
+                }
+            } else if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    newUserInput.textContent = commandHistory[historyIndex];
+                    placeCaretAtEnd(newUserInput);
+                } else {
+                    historyIndex = commandHistory.length;
+                    newUserInput.textContent = "";
+                }
+            } else if (e.key === "Tab") {
+                e.preventDefault();
+                const currentInput = newUserInput.textContent.toLowerCase();
+                const matchingCommands = Object.keys(commands).filter(cmd => 
+                    cmd.startsWith(currentInput)
+                );
+                if (matchingCommands.length === 1) {
+                    newUserInput.textContent = matchingCommands[0];
+                    placeCaretAtEnd(newUserInput);
+                }
+            }
+        });
+    }
+
+    function placeCaretAtEnd(el) {
+        el.focus();
+        if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            range.collapse(false);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (typeof document.body.createTextRange != "undefined") {
+            const textRange = document.body.createTextRange();
+            textRange.moveToElementText(el);
+            textRange.collapse(false);
+            textRange.select();
+        }
+    }
+
+    // Window controls functionality
+    document.querySelector('.close').addEventListener('click', () => {
+        if (confirm('Are you sure you want to close the terminal?')) {
+            window.close();
+        }
+    });
+
+    document.querySelector('.minimize').addEventListener('click', () => {
+        terminal.style.transform = 'scale(0.1)';
+        setTimeout(() => terminal.style.transform = 'scale(1)', 300);
+    });
+
+    document.querySelector('.maximize').addEventListener('click', () => {
+        terminal.style.width = terminal.style.width === '100%' ? '90%' : '100%';
+    });
+
+    addNewPrompt();
+});
